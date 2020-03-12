@@ -7,7 +7,7 @@ onready var anim_player: AnimationPlayer = $AnimationPlayer
 export var next_scene: PackedScene
 
 
-func _on_body_entered(body: PhysicsBody2D):
+func _on_body_entered(body: PhysicsBody2D) -> void:
 	teleport()
 
 
@@ -16,8 +16,6 @@ func _get_configuration_warning() -> String:
 
 
 func teleport() -> void:
-	get_tree().paused = true
-	anim_player.play("fade_out")
+	anim_player.play("fade_in")
 	yield(anim_player, "animation_finished")
-		get_tree().paused = false
-		get_tree().change_scene_to(next_scene)
+	get_tree().change_scene_to(next_scene)
